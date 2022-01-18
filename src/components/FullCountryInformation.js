@@ -10,10 +10,13 @@ const FullCountryInformation = ( {country} ) => {
             <h2>languages</h2>
             <ul>
                 {Object
-                    .values(country.languages)
-                    .map(language => <li>{language}</li>)
+                    .entries(country.languages)
+                    .map(language => <li key={language[0]}>{language[1]}</li>)
                 }
             </ul>
+            <picture>
+                <img src={country.flags.png} alt=""/>
+            </picture>
         </div>
     )
 }
