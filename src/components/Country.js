@@ -1,10 +1,18 @@
 import React, { useState } from 'react'
+import Weather from './Weather'
 
 const Country = ( { country, fullInfo } ) => {
     const [showInfo, setShowInfo] = useState(fullInfo)
     
     const toggleFullInfo = () => {
         setShowInfo(!showInfo)
+    }
+
+    const weather = <Weather city={country.capital} />
+    const checkWeather = () => {
+        if (weather.weather === {}) {
+            setShowInfo(showInfo)
+        }
     }
 
     return (
@@ -25,6 +33,7 @@ const Country = ( { country, fullInfo } ) => {
                 <picture>
                     <img src={country.flags.png} alt=""/>
                 </picture>
+                {weather}
             </div>
             : <div>
                 {country.name.common}
