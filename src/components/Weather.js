@@ -1,10 +1,12 @@
 import React , { useState, useEffect } from 'react'
 import axios from 'axios'
+import { CardinalDirection } from 'cardinal-direction'
 
 const Weather = ( { city } ) => {
     
     const api_key = process.env.REACT_APP_API_KEY
     const [weather, setWeather] = useState(null)
+    const Compass = require("cardinal-direction");
 
     useEffect(() => {
         console.log('effect')
@@ -23,7 +25,11 @@ const Weather = ( { city } ) => {
         return (
             <div>
             <h3>Weather in {city}</h3>
-            {weather.main.temp}
+            <b>temperature:</b> {Math.round(weather.main.temp - 273.15)} Celsius<br />
+            <picture>
+                <img src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} alt="" style={{backgroundColor: 'purple', display: 'block'}}/>
+            </picture>
+            <b>wind:</b> {Math.round(weather.wind.speed * 2.237)} mph direction {Compass.cardinalFromDegree(weather.wind.deg)}
             </div> 
         )
     }

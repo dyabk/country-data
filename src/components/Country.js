@@ -9,11 +9,6 @@ const Country = ( { country, fullInfo } ) => {
     }
 
     const weather = <Weather city={country.capital} />
-    const checkWeather = () => {
-        if (weather.weather === {}) {
-            setShowInfo(showInfo)
-        }
-    }
 
     return (
         showInfo
