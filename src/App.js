@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import Countries from './components/Countries'
 import Filter from './components/Filter'
 
 const App = () => {
@@ -9,7 +10,7 @@ const App = () => {
   useEffect(() => {
     console.log('effect')
     axios
-      .get('http://restcountries.com/v3.1/all')
+      .get('https://restcountries.com/v3.1/all')
       .then(response => {
         console.log('promise fulfilled')
         setCountries(response.data)
@@ -18,13 +19,17 @@ const App = () => {
   console.log('render', countries.length, 'countries')
 
   const handleFilterChange = (event) => {
-    console.log(`filter will be set to ${event.target.value}`)
     setFilter(event.target.value)
   }
+
+  const countriesToShow = filter === ''
+    ? countries
+    : countries.filter(country => country.name.common.toLowerCase().includes(filter.toLowerCase()))
   
   return (
     <div className="App">
       <Filter handler={handleFilterChange} word={filter} />
+      <Countries list={countriesToShow} length={countriesToShow.length}/>
     </div>
   );
 }
