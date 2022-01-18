@@ -24,12 +24,12 @@ const App = () => {
 
   const countriesToShow = filter === ''
     ? countries
-    : countries.filter(country => country.name.common.toLowerCase().includes(filter.toLowerCase()))
+    : countries.filter(country => country.name.common.toLowerCase().includes(filter.toLowerCase())).sort()
   
   return (
     <div className="App">
       <Filter handler={handleFilterChange} word={filter} />
-      <Countries list={countriesToShow} length={countriesToShow.length}/>
+      <Countries countries={countriesToShow} length={countriesToShow.length}/>
     </div>
   );
 }
